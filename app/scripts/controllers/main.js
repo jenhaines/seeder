@@ -9,7 +9,7 @@
  */
  angular
  .module('seederApp')
- .controller('SeedDataCtrl', function(Room, $scope){
+ .controller('SeedDataCtrl', function(Room, Message, $scope){
    $scope.rooms= Room.all;
 
    $scope.options = [1,2,3,4,5,6,7,8,9,10];
@@ -24,6 +24,21 @@
     };
     $scope.option ='';
     $scope.status = num + " rooms created!"
+   };
+
+   $scope.createMsg = function(msgnum, rm ){
+      for(var i=0; i<msgnum; i++){
+       var message = {username: '', body: '', roomId: rm.$id, created: ''};
+       message.username = chance.twitter();
+       message.body = chance.paragraph();
+       var timestamp = Firebase.ServerValue.TIMESTAMP;
+       message.created = timestamp;
+       Message.create(message);
+        // console.log(msgnum + ' messages for ' + rm.name);
+      };
+      $scope.room ='';
+    
+      $scope.status = msgnum + " messages created!";
    };
 
    // random number generator

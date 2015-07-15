@@ -29,10 +29,24 @@ angular
       delete: function(room){
         return rooms.$remove(room);
       },
-      markComplete: function(room){
-          room.status = 'complete';
-          return rooms.$save(room);
-      }
     };
+  })
 
+  .factory('Message', function($firebase, $firebaseArray, $firebaseObject, FIREBASE_URL){
+    var ref = new Firebase(FIREBASE_URL + '/messages');
+    // var query = ref.orderByChild('created');
+
+    var messages = $firebaseArray(ref);
+    return {
+      all: messages,
+      create: function(message){
+        return messages.$add(message);
+      },
+      get: function(messageId){
+        return $firebaseObject(ref.child('messages').child(messageId));
+      },
+      delete: function(message){
+        return messages.$remove(message);
+      },
+    };
   });

@@ -20,10 +20,21 @@
       </form>
     <p>{{status}}</p>
     </div>
-    <div class="col-md-2">
-      <select multiple class="form control" ng-model="selected" ng-options="item.name for item in rooms"></select>
-<h2>{{selected}}</h2>
-    </div>
+
+      <div class="col-md-2">
+        <h3 class="form-signin-heading">Message maker</h3>
+        <label>Select room</label>
+        </br>
+        <select class="form-control msgdropdown" ng-model="msgselected" ng-options="room.name for room in rooms"></select>
+        <h2>{{msgselected.name}}</h2>
+      </div>
+      <div class="col-md-2">
+        <label>Enter number of messages to make</label>
+        <input type="text" class="form-control msgnum" ng-model="msgnum" >
+        </br>
+        <button class="btn btn-primary" ng-click="createMsg(msgnum,msgselected)">Create Messages</button>
+      </div>
+
     </div>
     </div>
 
