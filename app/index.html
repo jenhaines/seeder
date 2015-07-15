@@ -20,21 +20,21 @@
       </form>
     <p>{{status}}</p>
     </div>
-
+    <form name="MessageMaker" novalidate>
       <div class="col-md-2">
         <h3 class="form-signin-heading">Message maker</h3>
         <label>Select room</label>
         </br>
-        <select class="form-control msgdropdown" ng-model="msgselected" ng-options="room.name for room in rooms"></select>
+        <select class="form-control msgdropdown" ng-model="msgselected" ng-options="room.name for room in rooms" required></select>
         <h2>{{msgselected.name}}</h2>
       </div>
       <div class="col-md-2">
         <label>Enter number of messages to make</label>
-        <input type="text" class="form-control msgnum" ng-model="msgnum" >
+        <input type="text" class="form-control msgnum" ng-model="msgnum" required>
         </br>
-        <button class="btn btn-primary" ng-click="createMsg(msgnum,msgselected)">Create Messages</button>
+        <button class="btn btn-primary" ng-disabled="MessageMaker.$invalid" ng-click="createMsg(msgnum,msgselected)">Create Messages</button>
       </div>
-
+    </form>
     </div>
     </div>
 

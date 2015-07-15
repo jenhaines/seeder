@@ -13,7 +13,7 @@ angular
 
   .constant('FIREBASE_URL', 'https://jennifer.firebaseio.com')
 
-  .factory('Room', function($firebase, $firebaseArray, $firebaseObject, FIREBASE_URL){
+  .factory('Room', function($firebase, $firebaseArray, $firebaseObject, FIREBASE_URL, Firebase){
     var ref = new Firebase(FIREBASE_URL + '/rooms');
     // var query = ref.orderByChild('created');
 
@@ -32,7 +32,7 @@ angular
     };
   })
 
-  .factory('Message', function($firebase, $firebaseArray, $firebaseObject, FIREBASE_URL){
+  .factory('Message', function($firebase, $firebaseArray, $firebaseObject, FIREBASE_URL, Firebase){
     var ref = new Firebase(FIREBASE_URL + '/messages');
     // var query = ref.orderByChild('created');
 
