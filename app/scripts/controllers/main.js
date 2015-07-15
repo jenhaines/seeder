@@ -14,17 +14,16 @@
 
    $scope.options = [1,2,3,4,5,6,7,8,9,10];
 
-   $scope.createRoom = function(){
-     var room = {};
-     room.desc = chance.sentence({words: 5});
-     room.level = rndNumGen(1, 3);
-     // var timestamp = getRandomDate();
+   $scope.createRoom = function(num){
+    for(var i=0; i<num; i++){
+     var room = {name: '', created: ''};
+     room.name = chance.word({syllables: 3});
      var timestamp = Firebase.ServerValue.TIMESTAMP;
-     room.created = getRandomDate();
-     room.status = getRandomStatus();
-     Room.create(room).then(function(){
-       $scope.tasklist = 'Room created!';
-     });
+     room.created = timestamp;
+     Room.create(room);
+    };
+    $scope.option ='';
+    $scope.status = num + " rooms created!"
    };
 
    // random number generator

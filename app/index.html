@@ -7,18 +7,25 @@
         <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-controller="MainCtrl">
-     <div class="container">
-     <form class="form-signin" ng-submit="createRooms(rooms.num)">
-     <h3 class="form-signin-heading">Room maker</h3>
+  <body ng-controller="SeedDataCtrl">
+    <div class="container">
+      <div class="row">
+      <div class="col-md-2">
+      <form name="RoomMaker" novalidate>
+        <h3 class="form-signin-heading">Room maker</h3>
         <label>Number of rooms</label>
-           <select class="form-control" ng-model="myselect" ng-options="o for o in options">
-             
-           </select>
-           {{o}}
-           </br>
-           <button class="btn btn-primary" type="submit">Create Rooms</button>
-           </form>
+        <select class="form-control rmdropdown" ng-model="selected" ng-options="num for num in options" required></select>
+        </br>
+        <button class="btn btn-primary" ng-disabled="RoomMaker.$invalid" ng-click="createRoom(option)">Create Rooms</button>
+      </form>
+    <p>{{status}}</p>
+    </div>
+    <div class="col-md-2">
+      <select multiple class="form control" ng-model="selected" ng-options="item.name for item in rooms"></select>
+<h2>{{selected}}</h2>
+    </div>
+    </div>
+    </div>
 
 
 
