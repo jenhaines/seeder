@@ -14,11 +14,13 @@
       <form name="RoomMaker" novalidate>
         <h3 class="form-signin-heading">Room maker</h3>
         <label>Number of rooms</label>
-        <select class="form-control rmdropdown" ng-model="selected" ng-options="num for num in options" required></select>
+        <select class="form-control rmdropdown" ng-model="rmselect" required>
+          <option ng-repeat="option in options" value="{{option}}">{{option}}</option>
+        </select>
         </br>
-        <button class="btn btn-primary" ng-disabled="RoomMaker.$invalid" ng-click="createRoom(option)">Create Rooms</button>
+        <button class="btn btn-primary" ng-disabled="RoomMaker.$invalid" ng-click="createRoom(rmselect)">Create Rooms</button>
       </form>
-    <p>{{status}}</p>
+    <p ng-click="status=''">{{status}}</p>
     </div>
     <form name="MessageMaker" novalidate>
       <div class="col-md-2">

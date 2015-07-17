@@ -9,20 +9,21 @@
  */
  angular
  .module('seederApp')
- .controller('SeedDataCtrl', function(Room, Message, $scope, Firebase, chance){
+ .controller('SeedDataCtrl', function(Room, Message, $scope, Firebase){
    $scope.rooms= Room.all;
 
    $scope.options = [1,2,3,4,5,6,7,8,9,10];
 
    $scope.createRoom = function(num){
     for(var i=0; i<num; i++){
+      console.log(num);
      var room = {name: '', created: ''};
      room.name = chance.word({syllables: 3});
      var timestamp = Firebase.ServerValue.TIMESTAMP;
      room.created = timestamp;
      Room.create(room);
     }
-    $scope.option ='';
+    $scope.rmselect ='';
     $scope.status = num + ' rooms created!';
    };
 
